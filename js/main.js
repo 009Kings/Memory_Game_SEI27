@@ -1,9 +1,18 @@
 console.log("Eat the 💩");
 
-let cardOne = "queen";
-let cardTwo = "king";
-let cardThree = "king";
-let cardFour = "queen";
+let cards = ["queen", "king", "king", "queen"];
+let cardsInPlay = [];
 
-console.log("User flipped " + cardFour);
-console.log("User flipped " + cardThree);
+let cardOne = cards[0];
+let cardTwo = cards[3];
+cardsInPlay.push(cardOne)
+cardsInPlay.push(cardTwo)
+
+console.log("User flipped " + cardsInPlay[0]);
+console.log("User flipped " + cardsInPlay[1]);
+
+if (cardsInPlay[0] === cardsInPlay[1]) {
+  alert("Match!")
+} else {
+  alert("You fucked")
+}
