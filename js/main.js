@@ -27,7 +27,7 @@ function checkForMatch() {
     message.textContent = "🎉You did it!🎉"
   } else {
     console.log("Eat 💩");
-    message.textContent = "☠️ Oh Noes! Try again ☠️"
+    message.textContent = "☠️💩 Oh Noes! Try again 💩☠️"
   }
   document.getElementById('message').appendChild(message)
 }
