@@ -43,37 +43,50 @@ function flipCard() {
   }
 }
 
-function createBoard() {
+function resetGame() {
   // clear the board first
   let board = document.getElementById('game-board')
-
+  
   //e.lastElementChild can also be used. 
   let child = board.firstElementChild;  
   while (child) { 
     board.removeChild(child); 
-    child = e.lastElementChild; 
+    child = board.firstElementChild; 
   }
+  // Clear the Cards in cardsInPlay
+  cardsInPlay = [];
+  // Clear my message
+  let badChild = document.getElementById('message').firstChild;
+  console.log(badChild)
+  if (badChild) {
+    document.getElementById('message').removeChild(badChild);
+  }
+}
 
+function createBoard() {
+  resetGame()
   // Make the rest of the board
   for (let i = 0; i < cards.length; i++) {
     let cardElement = document.createElement('img');
     cardElement.setAttribute('src', 'images/back.png');
     cardElement.setAttribute('data-id', i);
     cardElement.addEventListener('click', flipCard);
-    board.appendChild(cardElement);
+    document.getElementById('game-board').appendChild(cardElement);
+  }
+}
+
+function clearEventListeners() {
+  let cardNodes = document.querySelectorAll('img');
+  for (let i = 0; i < cardNodes.length; i++) {
+    cardNodes[i].removeEventListener('click', flipCard);
   }
 }
 
 function endGame() {
-  checkForMatch()
-
-  let cardNodes = document.querySelectorAll('img')
-  for (let i = 0; i < cardNodes.length; i++) {
-    cardNodes[i].removeEventListener('click', flipCard)
-  }
-
-  
+  checkForMatch();
+  clearEventListeners();
 }
 
-
 createBoard()
+let button = document.getElementById("reset")
+button.addEventListener('click', createBoard)
