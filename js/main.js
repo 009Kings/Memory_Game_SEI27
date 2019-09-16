@@ -44,12 +44,23 @@ function flipCard() {
 }
 
 function createBoard() {
+  // clear the board first
+  let board = document.getElementById('game-board')
+
+  //e.lastElementChild can also be used. 
+  let child = board.firstElementChild;  
+  while (child) { 
+    board.removeChild(child); 
+    child = e.lastElementChild; 
+  }
+
+  // Make the rest of the board
   for (let i = 0; i < cards.length; i++) {
     let cardElement = document.createElement('img');
     cardElement.setAttribute('src', 'images/back.png');
     cardElement.setAttribute('data-id', i);
     cardElement.addEventListener('click', flipCard);
-    document.getElementById('game-board').appendChild(cardElement);
+    board.appendChild(cardElement);
   }
 }
 
@@ -63,5 +74,6 @@ function endGame() {
 
   
 }
+
 
 createBoard()
