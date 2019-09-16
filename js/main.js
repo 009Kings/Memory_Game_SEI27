@@ -87,6 +87,11 @@ function endGame() {
   clearEventListeners();
 }
 
-createBoard()
-let button = document.getElementById("reset")
-button.addEventListener('click', createBoard)
+function init() {
+  createBoard();
+
+  // Set event listener to button
+  document.getElementById("reset").addEventListener('click', createBoard);
+}
+
+init();
