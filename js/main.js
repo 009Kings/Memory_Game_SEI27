@@ -65,14 +65,33 @@ function resetGame() {
 
 function createBoard() {
   resetGame()
+
+  // Randomize cards
+
+  // Create an array of random indices
+  let randomIndecies = []
+  let loopNumber = 0
+  // Loop four times to get four indecies
+  for (let i = 0; i < 4; i++) {
+    loopNumber++
+    let randomIndex = Math.floor(Math.random()*4)
+    while (randomIndecies.includes(randomIndex)) {
+      loopNumber++
+      randomIndex = Math.floor(Math.random()*4)
+    }
+    randomIndecies.push(randomIndex)
+  }
+  console.log(loopNumber)
+
   // Make the rest of the board
-  for (let i = 0; i < cards.length; i++) {
+  for (let i = 0; i < randomIndecies.length; i++) {
     let cardElement = document.createElement('img');
     cardElement.setAttribute('src', 'images/back.png');
-    cardElement.setAttribute('data-id', i);
+    cardElement.setAttribute('data-id', randomIndecies[i]);
     cardElement.addEventListener('click', flipCard);
     document.getElementById('game-board').appendChild(cardElement);
   }
+
 }
 
 function clearEventListeners() {
